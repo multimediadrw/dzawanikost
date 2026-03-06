@@ -25,8 +25,8 @@ export default function Navbar() {
             <Image
               src="/logo.png"
               alt="DzawaniKost Logo"
-              width={36}
-              height={36}
+              width={44}
+              height={44}
               className="object-contain"
             />
             <span className="text-xl font-bold text-gray-900">
