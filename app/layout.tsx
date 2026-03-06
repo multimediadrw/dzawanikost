@@ -8,11 +8,21 @@ export const metadata: Metadata = {
   description:
     "DzawaniKost menyediakan kamar kost nyaman, bersih, dan aman untuk mahasiswa dan pekerja. Berbagai pilihan kamar dengan fasilitas lengkap dan harga terjangkau.",
   keywords: ["kost", "kos", "hunian", "sewa kamar", "dzawanikost"],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: "/favicon.ico",
+  },
   openGraph: {
     title: "DzawaniKost - Hunian Nyaman & Terjangkau",
     description:
       "Kamar kost nyaman, bersih, dan aman dengan fasilitas lengkap.",
     type: "website",
+    images: [{ url: "/logo.png" }],
   },
 };
 

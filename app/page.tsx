@@ -132,7 +132,8 @@ export default function Home() {
   return (
     <main>
       {/* ===== HERO SECTION ===== */}
-      <section className="relative min-h-[500px] flex flex-col justify-end overflow-hidden">
+      <section className="relative overflow-hidden">
+        {/* Background Image */}
         <div className="absolute inset-0">
           <Image
             src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1600&q=80"
@@ -144,7 +145,8 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/55" />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-28 w-full">
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
           <div
             className="inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-full mb-5"
             style={{ backgroundColor: "rgba(255,255,255,0.2)" }}
@@ -152,13 +154,13 @@ export default function Home() {
             <span>🏠</span>
             <span>Solusi untuk Memilih Hunian Ideal</span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight max-w-2xl">
+          <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight max-w-2xl mb-12">
             Temukan Hunian Nyaman yang Cocok dengan Gaya Hidupmu
           </h1>
         </div>
 
-        {/* Search Bar floating */}
-        <div className="absolute bottom-0 left-0 right-0 z-20" style={{ transform: "translateY(50%)" }}>
+        {/* Search Bar - inside hero, at bottom */}
+        <div className="relative z-10 pb-10">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-5">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
@@ -221,9 +223,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Spacer for floating search bar */}
-      <div className="bg-white" style={{ height: "80px" }} />
 
       {/* ===== KATEGORI ===== */}
       <section className="py-16 bg-white">

@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, Home } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -21,12 +22,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div
-              className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: "#e879a0" }}
-            >
-              <Home className="w-4 h-4 text-white" />
-            </div>
+            <Image
+              src="/logo.png"
+              alt="DzawaniKost Logo"
+              width={36}
+              height={36}
+              className="object-contain"
+            />
             <span className="text-xl font-bold text-gray-900">
               Dzawani<span style={{ color: "#e879a0" }}>Kost</span>
             </span>
