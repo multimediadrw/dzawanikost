@@ -10,8 +10,9 @@ export async function generateStaticParams() {
   return daftarArtikel.map((a) => ({ slug: a.slug }));
 }
 
-export default function DetailArtikelPage({ params }: { params: { slug: string } }) {
-  const artikel = daftarArtikel.find((a) => a.slug === params.slug);
+export default async function DetailArtikelPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const artikel = daftarArtikel.find((a) => a.slug === slug);
   if (!artikel) notFound();
 
   const artikelTerkait = daftarArtikel
