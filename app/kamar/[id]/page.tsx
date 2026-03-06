@@ -288,8 +288,8 @@ export default function KamarDetailPage({ params }: Props) {
                   <span className="font-semibold text-gray-800">{kamar.penghuni}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Luas</span>
-                  <span className="font-semibold text-gray-800">{kamar.luas} m²</span>
+                  <span className="text-gray-500">Lokasi</span>
+                  <span className="font-semibold text-gray-800">{kamar.kota}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-500">Tersedia</span>

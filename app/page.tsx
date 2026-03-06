@@ -14,10 +14,12 @@ import {
   MessageCircle,
   ChevronLeft,
   ChevronRight,
+  Calendar,
+  User,
 } from "lucide-react";
 import SearchBar from "@/components/SearchBar";
 import KamarCard from "@/components/KamarCard";
-import { kamarList } from "@/lib/data";
+import { kamarList, daftarArtikel } from "@/lib/data";
 
 const KATEGORI = [
   {
@@ -408,6 +410,73 @@ export default function Home() {
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Section Blog */}
+      <section className="max-w-6xl mx-auto px-4 py-14">
+        <div className="flex items-end justify-between mb-8">
+          <div>
+            <span className="text-pink-500 text-sm font-semibold">✦ Blog & Artikel</span>
+            <h2 className="text-3xl font-bold text-gray-900 mt-1">
+              Tips & Info <span className="text-pink-500">Seputar Kost</span>
+            </h2>
+            <p className="text-gray-500 mt-2 text-sm">Artikel terbaru untuk anak kost dan mahasiswa</p>
+          </div>
+          <Link
+            href="/blog"
+            className="hidden md:flex items-center gap-1 text-pink-500 font-semibold text-sm hover:underline"
+          >
+            Lihat Semua <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {daftarArtikel.slice(0, 3).map((artikel) => (
+            <Link
+              key={artikel.id}
+              href={`/blog/${artikel.slug}`}
+              className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all overflow-hidden"
+            >
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src={artikel.gambar}
+                  alt={artikel.judul}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  unoptimized
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                    {artikel.kategori}
+                  </span>
+                </div>
+              </div>
+              <div className="p-5">
+                <h3 className="font-bold text-gray-900 text-base leading-snug mb-2 group-hover:text-pink-500 transition-colors line-clamp-2">
+                  {artikel.judul}
+                </h3>
+                <p className="text-gray-500 text-sm line-clamp-2 mb-4">{artikel.ringkasan}</p>
+                <div className="flex items-center justify-between text-xs text-gray-400">
+                  <div className="flex items-center gap-1">
+                    <User className="w-3 h-3" />
+                    <span>{artikel.penulis}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Calendar className="w-3 h-3" />
+                    <span>{new Date(artikel.tanggal).toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" })}</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="text-center mt-8 md:hidden">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border-2 border-pink-400 text-pink-500 hover:bg-pink-50 transition"
+          >
+            Lihat Semua Artikel <ChevronRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
     </main>

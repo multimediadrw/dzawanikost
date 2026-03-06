@@ -13,6 +13,7 @@ export default function Navbar() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/kamar", label: "Jelajahi Kamar" },
+    { href: "/blog", label: "Blog" },
     { href: "/tentang", label: "Tentang Kami" },
   ];
 
