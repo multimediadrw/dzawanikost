@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronDown, Search } from "lucide-react";
 import { lokasiList } from "@/lib/data";
@@ -23,42 +23,95 @@ interface DropdownProps {
 
 function Dropdown({ label, value, options, onChange, placeholder }: DropdownProps) {
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const updatePosition = useCallback(() => {
+    if (buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setDropdownStyle({
+        position: "fixed",
+        top: rect.bottom + 4,
+        left: rect.left,
+        width: rect.width,
+        zIndex: 9999,
+      });
+    }
+  }, []);
+
+  const handleOpen = () => {
+    if (!open) {
+      updatePosition();
+    }
+    setOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (open) {
+      updatePosition();
+    }
+  }, [open, updatePosition]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      if (
+        buttonRef.current &&
+        !buttonRef.current.contains(target) &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(target)
+      ) {
         setOpen(false);
       }
     }
+    function handleScroll() {
+      if (open) updatePosition();
+    }
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    window.addEventListener("scroll", handleScroll, true);
+    window.addEventListener("resize", updatePosition);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll, true);
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, [open, updatePosition]);
 
   return (
-    <div className="relative flex-1 min-w-0" ref={ref}>
+    <div className="relative flex-1 min-w-0">
       <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 px-1">
         {label}
       </p>
       <button
+        ref={buttonRef}
         type="button"
-        onClick={() => setOpen(!open)}
+        onClick={handleOpen}
         className="w-full flex items-center justify-between gap-2 px-4 py-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 transition-colors"
       >
         <span className={value ? "text-gray-900" : "text-gray-400"}>
           {value || placeholder}
         </span>
         <ChevronDown
-          className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 ${open ? "rotate-180" : ""}`}
+          className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 ${
+            open ? "rotate-180" : ""
+          }`}
         />
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-lg z-50 overflow-hidden">
+        <div
+          ref={dropdownRef}
+          style={dropdownStyle}
+          className="bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden"
+        >
           <div className="max-h-52 overflow-y-auto">
             <button
               type="button"
-              onClick={() => { onChange(""); setOpen(false); }}
+              onClick={() => {
+                onChange("");
+                setOpen(false);
+              }}
               className="w-full text-left px-4 py-3 text-sm font-semibold text-gray-500 hover:bg-pink-50 transition-colors border-b border-gray-100"
             >
               {placeholder}
@@ -67,9 +120,14 @@ function Dropdown({ label, value, options, onChange, placeholder }: DropdownProp
               <button
                 key={opt}
                 type="button"
-                onClick={() => { onChange(opt); setOpen(false); }}
+                onClick={() => {
+                  onChange(opt);
+                  setOpen(false);
+                }}
                 className={`w-full text-left px-4 py-3 text-sm hover:bg-pink-50 transition-colors ${
-                  value === opt ? "text-pink-600 font-semibold bg-pink-50" : "text-gray-700"
+                  value === opt
+                    ? "text-pink-600 font-semibold bg-pink-50"
+                    : "text-gray-700"
                 }`}
               >
                 {opt}

@@ -102,8 +102,9 @@ export default function Home() {
   return (
     <main>
       {/* ===== HERO SECTION ===== */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0">
+      <section className="relative">
+        {/* Background - tidak pakai overflow-hidden agar dropdown tidak terpotong */}
+        <div className="absolute inset-0 overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1600&q=80"
             alt="Hero background"
@@ -124,8 +125,8 @@ export default function Home() {
           </h1>
         </div>
 
-        {/* Search Bar inside hero */}
-        <div className="relative z-10 pb-10">
+        {/* Search Bar - di luar overflow container agar dropdown bisa muncul bebas */}
+        <div className="relative z-20 pb-10">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <SearchBar variant="hero" />
           </div>
