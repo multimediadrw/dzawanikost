@@ -102,20 +102,21 @@ export default function Home() {
   return (
     <main>
       {/* ===== HERO SECTION ===== */}
-      <section className="relative">
-        {/* Background - tidak pakai overflow-hidden agar dropdown tidak terpotong */}
+      <section className="relative overflow-visible">
+        {/* Background - absolute fill, tidak pakai overflow-hidden agar dropdown tidak terpotong */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1600&q=80"
+            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&q=90"
             alt="Hero background"
             fill
-            className="object-cover"
+            className="object-cover object-center"
             priority
           />
           <div className="absolute inset-0 bg-black/55" />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 w-full">
+        {/* Content - padding top besar untuk ruang navbar floating */}
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16 w-full">
           <div className="inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-full mb-5 bg-white/20">
             <span>🏠</span>
             <span>Solusi untuk Memilih Hunian Ideal</span>
@@ -125,7 +126,7 @@ export default function Home() {
           </h1>
         </div>
 
-        {/* Search Bar - di luar overflow container agar dropdown bisa muncul bebas */}
+        {/* Search Bar */}
         <div className="relative z-20 pb-10">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <SearchBar variant="hero" />
