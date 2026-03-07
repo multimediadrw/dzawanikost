@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { daftarArtikel } from "@/lib/data";
 import { Calendar, User, ChevronLeft, Tag, ChevronRight } from "lucide-react";
 
@@ -137,7 +136,6 @@ export default async function DetailArtikelPage({ params }: { params: Promise<{ 
           </section>
         )}
       </main>
-      <Footer />
     </>
   );
 }

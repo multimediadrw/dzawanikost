@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { daftarArtikel, kategoriArtikel } from "@/lib/data";
 import { Calendar, User, ChevronRight, Search } from "lucide-react";
 
@@ -209,7 +208,6 @@ export default function BlogPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

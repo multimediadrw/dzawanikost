@@ -184,7 +184,7 @@ export default function SearchBar({
         <Dropdown
           label="Penghuni"
           value={penghuni}
-          options={["Putra", "Putri"]}
+          options={["Putra", "Putri", "Pasutri"]}
           onChange={setPenghuni}
           placeholder="Pilih Penghuni"
         />

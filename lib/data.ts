@@ -3,7 +3,7 @@ export interface Kamar {
   slug: string;
   nama: string;
   tipe: string;
-  penghuni: "Putra" | "Putri" | "Campur";
+  penghuni: "Putra" | "Putri" | "Pasutri" | "Campur";
   lokasi: string;
   kota: string;
   alamat: string;
@@ -2572,11 +2572,9 @@ export const daftarArtikel: Artikel[] = [
 
 export const lokasiList = [
   'Yogyakarta',
-  'Sleman',
-  'Bantul',
-  'Condongcatur',
-  'Palagan',
-  'Ngabean',
+  'Malang',
+  'Bandung',
+  'Jakarta',
 ];
 
 export const kategoriArtikel = [
