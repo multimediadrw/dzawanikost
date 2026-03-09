@@ -16,45 +16,21 @@ import {
   ChevronRight,
   Calendar,
   User,
+  Search,
+  ArrowRight,
 } from "lucide-react";
-import SearchBar from "@/components/SearchBar";
 import KamarCard from "@/components/KamarCard";
 import { kamarList, daftarArtikel } from "@/lib/data";
 
-const KATEGORI = [
-  {
-    label: "Kamar Standar",
-    jumlah: "2 kamar",
-    gambar: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&q=80",
-    filter: "Standard",
-  },
-  {
-    label: "Kamar Deluxe",
-    jumlah: "2 kamar",
-    gambar: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80",
-    filter: "Deluxe",
-  },
-  {
-    label: "Kamar Superior",
-    jumlah: "2 kamar",
-    gambar: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80",
-    filter: "Superior",
-  },
-];
+const TABS = ["Semua", "Yogyakarta", "Malang", "Bandung", "Jakarta", "Bali"];
 
-const FASILITAS_FILTER = [
-  {
-    label: "Kamar Mandi Dalam",
-    gambar: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=80",
-  },
-  {
-    label: "Kamar Mandi Luar",
-    gambar: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&q=80",
-  },
-  {
-    label: "Unit Dengan Balkon",
-    gambar: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&q=80",
-  },
+const FASILITAS_UMUM = [
+  { icon: Wifi, label: "WiFi Gratis", sub: "24 jam" },
+  { icon: Car, label: "Parkir Luas", sub: "Motor & mobil" },
+  { icon: Shield, label: "Keamanan 24 Jam", sub: "CCTV & satpam" },
+  { icon: Utensils, label: "Dapur Bersama", sub: "Lengkap & bersih" },
+  { icon: Wind, label: "AC", sub: "Setiap kamar" },
+  { icon: MapPin, label: "Lokasi Strategis", sub: "Dekat kampus" },
 ];
 
 const TESTIMONI = [
@@ -81,20 +57,10 @@ const TESTIMONI = [
   },
 ];
 
-const TABS = ["Semua", "Yogyakarta", "Malang", "Bandung", "Jakarta", "Bali"];
-
-const FASILITAS_UMUM = [
-  { icon: Wifi, label: "WiFi Gratis", sub: "24 jam" },
-  { icon: Car, label: "Parkir Luas", sub: "Motor & mobil" },
-  { icon: Shield, label: "Keamanan 24 Jam", sub: "CCTV & satpam" },
-  { icon: Utensils, label: "Dapur Bersama", sub: "Lengkap & bersih" },
-  { icon: Wind, label: "AC", sub: "Setiap kamar" },
-  { icon: MapPin, label: "Lokasi Strategis", sub: "Dekat kampus" },
-];
-
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Semua");
   const [testiIdx, setTestiIdx] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const filteredKamar =
     activeTab === "Semua"
@@ -102,10 +68,75 @@ export default function Home() {
       : kamarList.filter((k) => k.kota === activeTab).slice(0, 6);
 
   return (
-    <main>
-      {/* ===== HERO SECTION ===== */}
-      <section className="relative overflow-visible">
-        {/* Background - absolute fill, tidak pakai overflow-hidden agar dropdown tidak terpotong */}
+    <main className="pb-20 md:pb-0">
+
+      {/* ===== MOBILE HERO ===== */}
+      <section className="md:hidden relative overflow-hidden" style={{ minHeight: "280px" }}>
+        <Image
+          src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80"
+          alt="Hero background"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+
+        <div className="relative z-10 px-4 pt-6 pb-8">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full mb-4">
+            <span>🏠</span>
+            <span>Hunian Nyaman & Terjangkau</span>
+          </div>
+
+          {/* Heading */}
+          <h1 className="text-2xl font-bold text-white leading-tight mb-1">
+            Temukan Kost Impianmu
+          </h1>
+          <p className="text-white/80 text-sm mb-5">
+            23 properti tersedia di Yogyakarta, Malang, Bandung & Bali
+          </p>
+
+          {/* Mobile Search Bar */}
+          <Link
+            href="/kamar"
+            className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3.5 shadow-lg"
+          >
+            <Search className="w-4 h-4 text-pink-400 flex-shrink-0" />
+            <span className="text-gray-400 text-sm flex-1">Cari kost di kota mana?</span>
+            <div className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#e879a0" }}>
+              <ArrowRight className="w-4 h-4 text-white" />
+            </div>
+          </Link>
+        </div>
+
+        {/* Stats bar */}
+        <div className="relative z-10 mx-4 mb-0">
+          <div className="bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center justify-around -mb-5">
+            <div className="text-center">
+              <p className="text-lg font-bold text-gray-900">23</p>
+              <p className="text-xs text-gray-500">Properti</p>
+            </div>
+            <div className="w-px h-8 bg-gray-100" />
+            <div className="text-center">
+              <p className="text-lg font-bold text-gray-900">5</p>
+              <p className="text-xs text-gray-500">Kota</p>
+            </div>
+            <div className="w-px h-8 bg-gray-100" />
+            <div className="text-center">
+              <p className="text-lg font-bold text-gray-900">4.9</p>
+              <p className="text-xs text-gray-500">Rating</p>
+            </div>
+            <div className="w-px h-8 bg-gray-100" />
+            <div className="text-center">
+              <p className="text-lg font-bold text-gray-900">24/7</p>
+              <p className="text-xs text-gray-500">Support</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== DESKTOP HERO ===== */}
+      <section className="hidden md:block relative overflow-visible">
         <div className="absolute inset-0 overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1920&q=90"
@@ -116,8 +147,6 @@ export default function Home() {
           />
           <div className="absolute inset-0 bg-black/55" />
         </div>
-
-        {/* Content - padding top besar untuk ruang navbar floating */}
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-16 w-full">
           <div className="inline-flex items-center gap-2 text-white text-sm font-medium px-4 py-2 rounded-full mb-5 bg-white/20">
             <span>🏠</span>
@@ -127,81 +156,82 @@ export default function Home() {
             Temukan Hunian Nyaman yang Cocok dengan Gaya Hidupmu
           </h1>
         </div>
-
-        {/* Search Bar */}
         <div className="relative z-20 pb-10">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SearchBar variant="hero" />
+            {/* Desktop SearchBar placeholder */}
+            <div className="bg-white rounded-2xl shadow-xl p-4 flex gap-3">
+              <div className="flex-1 flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3">
+                <Search className="w-4 h-4 text-gray-400" />
+                <span className="text-gray-400 text-sm">Cari kost berdasarkan lokasi...</span>
+              </div>
+              <Link href="/kamar" className="px-6 py-3 rounded-xl text-white font-semibold text-sm" style={{ backgroundColor: "#e879a0" }}>
+                Cari Kamar
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ===== KATEGORI ===== */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <p className="text-sm font-semibold uppercase tracking-widest mb-2 text-pink-500">
-              Kategori
-            </p>
-            <h2 className="text-3xl font-bold text-gray-900">Pilih Jenis Kamarmu</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {KATEGORI.map((kat) => (
-              <Link
-                key={kat.label}
-                href={`/kamar?tipe=${kat.filter}`}
-                className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 block"
-              >
-                <div className="relative h-48">
-                  <Image
-                    src={kat.gambar}
-                    alt={kat.label}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <p className="text-white font-bold text-lg">{kat.label}</p>
-                  <p className="text-white/80 text-sm">{kat.jumlah}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
+      {/* ===== MOBILE: QUICK FILTER KOTA ===== */}
+      <section className="md:hidden pt-8 pb-4 bg-white">
+        <div className="px-4 mb-3">
+          <p className="text-xs font-semibold uppercase tracking-widest text-pink-500 mb-1">Cari Berdasarkan Kota</p>
+          <h2 className="text-lg font-bold text-gray-900">Pilih Kotamu</h2>
+        </div>
+        <div className="flex gap-3 px-4 overflow-x-auto pb-2 scrollbar-hide">
+          {[
+            { kota: "Yogyakarta", emoji: "🏛️", jumlah: kamarList.filter(k => k.kota === "Yogyakarta").length },
+            { kota: "Malang", emoji: "🌿", jumlah: kamarList.filter(k => k.kota === "Malang").length },
+            { kota: "Bandung", emoji: "🌺", jumlah: kamarList.filter(k => k.kota === "Bandung").length },
+            { kota: "Jakarta", emoji: "🏙️", jumlah: kamarList.filter(k => k.kota === "Jakarta").length },
+            { kota: "Bali", emoji: "🌴", jumlah: kamarList.filter(k => k.kota === "Bali").length },
+          ].map((item) => (
+            <Link
+              key={item.kota}
+              href={`/kamar?lokasi=${item.kota}`}
+              className="flex-shrink-0 flex flex-col items-center gap-2 bg-gray-50 border border-gray-100 rounded-2xl px-4 py-3 min-w-[80px] active:scale-95 transition-transform"
+            >
+              <span className="text-2xl">{item.emoji}</span>
+              <span className="text-xs font-semibold text-gray-700">{item.kota}</span>
+              <span className="text-xs text-gray-400">{item.jumlah} kost</span>
+            </Link>
+          ))}
         </div>
       </section>
 
       {/* ===== KAMAR TERSEDIA ===== */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8">
+      <section className="py-6 md:py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-4 px-4 md:px-6 lg:px-8">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-widest mb-1 text-pink-500">
+              <p className="text-xs md:text-sm font-semibold uppercase tracking-widest mb-0.5 md:mb-1 text-pink-500">
                 Kamar Tersedia
               </p>
-              <h2 className="text-3xl font-bold text-gray-900">Kamar Dengan Harga Terbaik</h2>
+              <h2 className="text-xl md:text-3xl font-bold text-gray-900">Harga Terbaik</h2>
             </div>
             <Link
               href="/kamar"
-              className="text-sm font-semibold text-pink-500 hover:text-pink-600 transition-colors"
+              className="text-xs md:text-sm font-semibold text-pink-500 flex items-center gap-1"
             >
-              Lihat Semua →
+              Lihat Semua <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
             </Link>
           </div>
 
-          {/* Tab Filter Lokasi */}
-          <div className="flex flex-wrap gap-2 mb-8">
+          {/* Tab Filter - Horizontal Scroll on Mobile */}
+          <div className="flex gap-2 mb-4 px-4 md:px-6 lg:px-8 overflow-x-auto pb-1 scrollbar-hide">
             {TABS.map((tab) => {
               const jumlah = tab === "Semua" ? kamarList.length : kamarList.filter((k) => k.kota === tab).length;
               return (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                  className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium transition-all ${
                     activeTab === tab
-                      ? "bg-pink-500 text-white shadow-sm shadow-pink-200"
-                      : "bg-white text-gray-600 border border-gray-200 hover:border-pink-300 hover:bg-pink-50"
+                      ? "text-white shadow-sm"
+                      : "bg-white text-gray-600 border border-gray-200"
                   }`}
+                  style={activeTab === tab ? { backgroundColor: "#e879a0" } : {}}
                 >
                   <span>{tab}</span>
                   <span className={`text-xs px-1.5 py-0.5 rounded-full font-semibold ${
@@ -210,85 +240,68 @@ export default function Home() {
                 </button>
               );
             })}
-            {activeTab !== "Semua" && (
-              <Link
-                href={`/kamar?lokasi=${activeTab}`}
-                className="ml-auto text-sm font-semibold text-pink-500 hover:text-pink-600 transition-colors flex items-center gap-1"
-              >
-                Lihat semua di {activeTab} →
-              </Link>
-            )}
           </div>
 
-          {/* Kamar Cards */}
+          {/* Cards - Horizontal Scroll on Mobile, Grid on Desktop */}
           {filteredKamar.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {filteredKamar.map((kamar) => (
-                <KamarCard key={kamar.id} kamar={kamar} />
-              ))}
-            </div>
+            <>
+              {/* Mobile: Horizontal Scroll */}
+              <div className="md:hidden flex gap-4 px-4 overflow-x-auto pb-2 scrollbar-hide">
+                {filteredKamar.map((kamar) => (
+                  <div key={kamar.id} className="flex-shrink-0 w-[280px]">
+                    <KamarCard kamar={kamar} />
+                  </div>
+                ))}
+              </div>
+              {/* Desktop: Grid */}
+              <div className="hidden md:grid grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8">
+                {filteredKamar.map((kamar) => (
+                  <KamarCard key={kamar.id} kamar={kamar} />
+                ))}
+              </div>
+            </>
           ) : (
-            <div className="text-center py-16 text-gray-400">
-              <p className="text-lg">Belum ada kamar di lokasi ini.</p>
+            <div className="text-center py-12 text-gray-400 px-4">
+              <p className="text-base">Belum ada kamar di lokasi ini.</p>
+            </div>
+          )}
+
+          {/* Mobile CTA */}
+          {activeTab !== "Semua" && (
+            <div className="md:hidden px-4 mt-3">
+              <Link
+                href={`/kamar?lokasi=${activeTab}`}
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border-2 text-sm font-semibold transition-colors"
+                style={{ borderColor: "#e879a0", color: "#e879a0" }}
+              >
+                Lihat semua di {activeTab} <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           )}
         </div>
       </section>
 
-      {/* ===== SESUAIKAN GAYAMU ===== */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <p className="text-sm font-semibold uppercase tracking-widest mb-2 text-pink-500">
-              Sesuaikan Gayamu
-            </p>
-            <h2 className="text-3xl font-bold text-gray-900">Pilih Fasilitas yang Kamu Inginkan</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {FASILITAS_FILTER.map((fas) => (
-              <Link
-                key={fas.label}
-                href="/kamar"
-                className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 block"
-              >
-                <div className="relative h-52">
-                  <Image
-                    src={fas.gambar}
-                    alt={fas.label}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <p className="text-white font-bold text-lg">{fas.label}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ===== FASILITAS UMUM ===== */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-8 md:py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <p className="text-sm font-semibold uppercase tracking-widest mb-2 text-pink-500">
+          <div className="text-center mb-6 md:mb-10">
+            <p className="text-xs md:text-sm font-semibold uppercase tracking-widest mb-1 md:mb-2 text-pink-500">
               Fasilitas
             </p>
-            <h2 className="text-3xl font-bold text-gray-900">Fasilitas Lengkap untuk Kenyamananmu</h2>
+            <h2 className="text-xl md:text-3xl font-bold text-gray-900">Fasilitas Lengkap</h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {/* Mobile: 3 col grid compact */}
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
             {FASILITAS_UMUM.map((fas) => (
               <div
                 key={fas.label}
-                className="bg-white rounded-2xl p-4 text-center shadow-sm hover:shadow-md transition-all"
+                className="bg-gray-50 md:bg-white rounded-2xl p-3 md:p-4 text-center md:shadow-sm hover:shadow-md transition-all"
               >
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 bg-pink-50">
-                  <fas.icon className="w-5 h-5 text-pink-500" />
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-3 bg-pink-50">
+                  <fas.icon className="w-4 h-4 md:w-5 md:h-5 text-pink-500" />
                 </div>
-                <p className="text-sm font-semibold text-gray-800">{fas.label}</p>
-                <p className="text-xs text-gray-500 mt-0.5">{fas.sub}</p>
+                <p className="text-xs font-semibold text-gray-800 leading-tight">{fas.label}</p>
+                <p className="text-[10px] md:text-xs text-gray-500 mt-0.5 hidden md:block">{fas.sub}</p>
               </div>
             ))}
           </div>
@@ -296,51 +309,75 @@ export default function Home() {
       </section>
 
       {/* ===== TESTIMONI ===== */}
-      <section className="py-16 bg-white">
+      <section className="py-8 md:py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <p className="text-sm font-semibold uppercase tracking-widest mb-2 text-pink-500">
+          <div className="text-center mb-6 md:mb-10">
+            <p className="text-xs md:text-sm font-semibold uppercase tracking-widest mb-1 md:mb-2 text-pink-500">
               Testimoni
             </p>
-            <h2 className="text-3xl font-bold text-gray-900">Apa Kata Mereka?</h2>
+            <h2 className="text-xl md:text-3xl font-bold text-gray-900">Apa Kata Mereka?</h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* Video placeholder */}
+          {/* Mobile: Compact Card */}
+          <div className="md:hidden">
+            <div className="rounded-2xl p-5 text-white mb-4" style={{ backgroundColor: "#e879a0" }}>
+              <div className="flex gap-1 mb-3">
+                {Array.from({ length: TESTIMONI[testiIdx].rating }).map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 fill-yellow-300 text-yellow-300" />
+                ))}
+              </div>
+              <p className="text-white text-sm leading-relaxed mb-4">
+                &ldquo;{TESTIMONI[testiIdx].teks}&rdquo;
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full flex items-center justify-center font-bold text-white text-sm bg-white/30">
+                  {TESTIMONI[testiIdx].inisial}
+                </div>
+                <div>
+                  <p className="font-bold text-white text-sm">{TESTIMONI[testiIdx].nama}</p>
+                  <p className="text-white/80 text-xs">{TESTIMONI[testiIdx].profesi}</p>
+                </div>
+              </div>
+            </div>
+            {/* Dots */}
+            <div className="flex items-center gap-2 justify-center">
+              {TESTIMONI.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setTestiIdx(i)}
+                  className={`h-2 rounded-full transition-all ${
+                    i === testiIdx ? "w-6" : "w-2 bg-gray-300"
+                  }`}
+                  style={i === testiIdx ? { backgroundColor: "#e879a0", width: "24px" } : {}}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop: Original Layout */}
+          <div className="hidden md:grid grid-cols-2 gap-8 items-center">
             <div
               className="rounded-2xl overflow-hidden shadow-lg bg-gray-100 flex items-center justify-center"
               style={{ aspectRatio: "16/9" }}
             >
               <div className="text-center p-8">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg bg-pink-500">
-                  <svg
-                    className="w-6 h-6 text-white"
-                    style={{ marginLeft: "4px" }}
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg className="w-6 h-6 text-white" style={{ marginLeft: "4px" }} fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </div>
                 <p className="text-gray-500 text-sm font-medium">Testimoni Video</p>
-                <p className="text-gray-400 text-xs mt-1">DzawaniKost</p>
               </div>
             </div>
-
-            {/* Testimoni Card */}
             <div>
               <div className="rounded-2xl p-6 text-white bg-pink-500">
-                <div className="text-white/30 text-6xl font-serif leading-none mb-2" style={{ lineHeight: "1" }}>
-                  &ldquo;
-                </div>
+                <div className="text-white/30 text-6xl font-serif leading-none mb-2">&ldquo;</div>
                 <div className="flex gap-1 mb-4">
                   {Array.from({ length: TESTIMONI[testiIdx].rating }).map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-yellow-300 text-yellow-300" />
                   ))}
                 </div>
-                <p className="text-white text-base leading-relaxed mb-6">
-                  {TESTIMONI[testiIdx].teks}
-                </p>
+                <p className="text-white text-base leading-relaxed mb-6">{TESTIMONI[testiIdx].teks}</p>
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-white text-sm bg-white/30">
                     {TESTIMONI[testiIdx].inisial}
@@ -351,30 +388,14 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
-              {/* Navigation */}
               <div className="flex items-center gap-2 mt-4 justify-center">
-                <button
-                  onClick={() =>
-                    setTestiIdx((prev) => (prev - 1 + TESTIMONI.length) % TESTIMONI.length)
-                  }
-                  className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-all"
-                >
+                <button onClick={() => setTestiIdx((prev) => (prev - 1 + TESTIMONI.length) % TESTIMONI.length)} className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50">
                   <ChevronLeft className="w-4 h-4 text-gray-500" />
                 </button>
                 {TESTIMONI.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setTestiIdx(i)}
-                    className={`h-2.5 rounded-full transition-all ${
-                      i === testiIdx ? "bg-pink-500 w-6" : "bg-gray-200 w-2.5"
-                    }`}
-                  />
+                  <button key={i} onClick={() => setTestiIdx(i)} className={`h-2.5 rounded-full transition-all ${i === testiIdx ? "bg-pink-500 w-6" : "bg-gray-200 w-2.5"}`} />
                 ))}
-                <button
-                  onClick={() => setTestiIdx((prev) => (prev + 1) % TESTIMONI.length)}
-                  className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-all"
-                >
+                <button onClick={() => setTestiIdx((prev) => (prev + 1) % TESTIMONI.length)} className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50">
                   <ChevronRight className="w-4 h-4 text-gray-500" />
                 </button>
               </div>
@@ -383,42 +404,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== CTA / BANTUAN ===== */}
-      <section className="py-16 bg-pink-500">
+      {/* ===== CTA WHATSAPP (Mobile Optimized) ===== */}
+      <section className="py-8 md:py-16" style={{ backgroundColor: "#e879a0" }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* FAQ */}
+          {/* Mobile: Stack */}
+          <div className="md:hidden space-y-4">
+            <div className="bg-white rounded-2xl p-5">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center bg-pink-50">
+                  <span className="text-lg">❓</span>
+                </div>
+                <h3 className="text-base font-bold text-gray-900">Ada Pertanyaan?</h3>
+              </div>
+              <p className="text-gray-600 text-sm mb-4">Temukan jawaban seputar pemesanan, pembayaran, dan lainnya.</p>
+              <Link href="/kontak" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white" style={{ backgroundColor: "#e879a0" }}>
+                Lihat FAQ
+              </Link>
+            </div>
+            <a
+              href="https://wa.me/628112833993?text=Halo, saya ingin bertanya tentang DzawaniKost"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-white rounded-2xl p-5 shadow-sm"
+            >
+              <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#25D366" }}>
+                <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+              </div>
+              <div className="flex-1">
+                <p className="font-bold text-gray-900 text-sm">Chat WhatsApp Sekarang</p>
+                <p className="text-gray-500 text-xs">Respon cepat 24/7</p>
+              </div>
+              <ArrowRight className="w-4 h-4 text-gray-400" />
+            </a>
+          </div>
+
+          {/* Desktop: Side by side */}
+          <div className="hidden md:grid grid-cols-2 gap-6">
             <div className="bg-white rounded-2xl p-8">
               <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4 bg-pink-50">
                 <span className="text-xl">❓</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-2">Mempunyai Pertanyaan?</h3>
-              <p className="text-gray-600 text-sm mb-6">
-                Temukan jawaban dari pertanyaan yang sering diajukan seputar pemesanan, pembayaran, dan lainnya.
-              </p>
-              <Link
-                href="/kontak"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-pink-500 hover:bg-pink-600 transition-colors"
-              >
+              <p className="text-gray-600 text-sm mb-6">Temukan jawaban dari pertanyaan yang sering diajukan seputar pemesanan, pembayaran, dan lainnya.</p>
+              <Link href="/kontak" className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white bg-pink-500 hover:bg-pink-600 transition-colors">
                 Lihat FAQ
               </Link>
             </div>
-
-            {/* WhatsApp */}
             <div className="rounded-2xl p-8 bg-pink-600">
               <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4 bg-white/20">
                 <MessageCircle className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">Butuh Bantuan Langsung?</h3>
-              <p className="text-white/80 text-sm mb-6">
-                Tim Customer Service kami siap membantu 24/7. Hubungi Kami melalui WhatsApp untuk respon cepat.
-              </p>
-              <a
-                href="https://wa.me/628112833993?text=Halo, saya ingin bertanya tentang DzawaniKost"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-white text-pink-500 hover:bg-gray-50 transition-colors"
-              >
+              <p className="text-white/80 text-sm mb-6">Tim Customer Service kami siap membantu 24/7. Hubungi Kami melalui WhatsApp untuk respon cepat.</p>
+              <a href="https://wa.me/628112833993?text=Halo, saya ingin bertanya tentang DzawaniKost" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-white text-pink-500 hover:bg-gray-50 transition-colors">
                 <MessageCircle className="w-4 h-4" />
                 Chat Via WhatsApp
               </a>
@@ -427,70 +467,82 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section Blog */}
-      <section className="max-w-6xl mx-auto px-4 py-14">
-        <div className="flex items-end justify-between mb-8">
-          <div>
-            <span className="text-pink-500 text-sm font-semibold">✦ Blog & Artikel</span>
-            <h2 className="text-3xl font-bold text-gray-900 mt-1">
-              Tips & Info <span className="text-pink-500">Seputar Kost</span>
-            </h2>
-            <p className="text-gray-500 mt-2 text-sm">Artikel terbaru untuk anak kost dan mahasiswa</p>
-          </div>
-          <Link
-            href="/blog"
-            className="hidden md:flex items-center gap-1 text-pink-500 font-semibold text-sm hover:underline"
-          >
-            Lihat Semua <ChevronRight className="w-4 h-4" />
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {daftarArtikel.slice(0, 3).map((artikel) => (
-            <Link
-              key={artikel.id}
-              href={`/blog/${artikel.slug}`}
-              className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all overflow-hidden"
-            >
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={artikel.gambar}
-                  alt={artikel.judul}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  unoptimized
-                />
-                <div className="absolute top-3 left-3">
-                  <span className="bg-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                    {artikel.kategori}
-                  </span>
-                </div>
-              </div>
-              <div className="p-5">
-                <h3 className="font-bold text-gray-900 text-base leading-snug mb-2 group-hover:text-pink-500 transition-colors line-clamp-2">
-                  {artikel.judul}
-                </h3>
-                <p className="text-gray-500 text-sm line-clamp-2 mb-4">{artikel.ringkasan}</p>
-                <div className="flex items-center justify-between text-xs text-gray-400">
-                  <div className="flex items-center gap-1">
-                    <User className="w-3 h-3" />
-                    <span>{artikel.penulis}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-3 h-3" />
-                    <span>{new Date(artikel.tanggal).toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" })}</span>
-                  </div>
-                </div>
-              </div>
+      {/* ===== BLOG ===== */}
+      <section className="py-8 md:py-14 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-end justify-between mb-5 px-4 md:px-6 lg:px-8">
+            <div>
+              <span className="text-pink-500 text-xs md:text-sm font-semibold">✦ Blog & Artikel</span>
+              <h2 className="text-xl md:text-3xl font-bold text-gray-900 mt-1">
+                Tips & Info <span className="text-pink-500">Kost</span>
+              </h2>
+            </div>
+            <Link href="/blog" className="hidden md:flex items-center gap-1 text-pink-500 font-semibold text-sm hover:underline">
+              Lihat Semua <ChevronRight className="w-4 h-4" />
             </Link>
-          ))}
-        </div>
-        <div className="text-center mt-8 md:hidden">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold border-2 border-pink-400 text-pink-500 hover:bg-pink-50 transition"
-          >
-            Lihat Semua Artikel <ChevronRight className="w-4 h-4" />
-          </Link>
+          </div>
+
+          {/* Mobile: Horizontal Scroll */}
+          <div className="md:hidden flex gap-4 px-4 overflow-x-auto pb-2 scrollbar-hide">
+            {daftarArtikel.slice(0, 5).map((artikel) => (
+              <Link
+                key={artikel.id}
+                href={`/blog/${artikel.slug}`}
+                className="flex-shrink-0 w-[240px] bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
+              >
+                <div className="relative h-36 overflow-hidden">
+                  <Image src={artikel.gambar} alt={artikel.judul} fill className="object-cover" unoptimized />
+                  <div className="absolute top-2 left-2">
+                    <span className="bg-pink-500 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full">
+                      {artikel.kategori}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-3">
+                  <h3 className="font-bold text-gray-900 text-xs leading-snug line-clamp-2 mb-2">{artikel.judul}</h3>
+                  <div className="flex items-center gap-1 text-[10px] text-gray-400">
+                    <Calendar className="w-2.5 h-2.5" />
+                    <span>{new Date(artikel.tanggal).toLocaleDateString("id-ID", { day: "numeric", month: "short" })}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Mobile: Lihat Semua */}
+          <div className="md:hidden px-4 mt-4">
+            <Link href="/blog" className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border-2 text-sm font-semibold" style={{ borderColor: "#e879a0", color: "#e879a0" }}>
+              Lihat Semua Artikel <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Desktop: Grid */}
+          <div className="hidden md:grid grid-cols-3 gap-6 px-4 sm:px-6 lg:px-8">
+            {daftarArtikel.slice(0, 3).map((artikel) => (
+              <Link key={artikel.id} href={`/blog/${artikel.slug}`} className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
+                  <Image src={artikel.gambar} alt={artikel.judul} fill className="object-cover group-hover:scale-105 transition-transform duration-300" unoptimized />
+                  <div className="absolute top-3 left-3">
+                    <span className="bg-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full">{artikel.kategori}</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-bold text-gray-900 text-base leading-snug mb-2 group-hover:text-pink-500 transition-colors line-clamp-2">{artikel.judul}</h3>
+                  <p className="text-gray-500 text-sm line-clamp-2 mb-4">{artikel.ringkasan}</p>
+                  <div className="flex items-center justify-between text-xs text-gray-400">
+                    <div className="flex items-center gap-1">
+                      <User className="w-3 h-3" />
+                      <span>{artikel.penulis}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3" />
+                      <span>{new Date(artikel.tanggal).toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" })}</span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </main>
