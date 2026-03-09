@@ -111,25 +111,25 @@ export default function Home() {
 
         {/* Stats bar */}
         <div className="relative z-10 mx-4 mb-0">
-          <div className="bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center justify-around -mb-5">
-            <div className="text-center">
+          <div className="bg-white rounded-2xl shadow-lg px-2 py-4 flex items-center justify-around -mb-5">
+            <div className="text-center px-1">
               <p className="text-lg font-bold text-gray-900">23</p>
-              <p className="text-xs text-gray-500">Properti</p>
+              <p className="text-[11px] text-gray-500 whitespace-nowrap">Properti</p>
             </div>
-            <div className="w-px h-8 bg-gray-100" />
-            <div className="text-center">
+            <div className="w-px h-8 bg-gray-100 flex-shrink-0" />
+            <div className="text-center px-1">
               <p className="text-lg font-bold text-gray-900">5</p>
-              <p className="text-xs text-gray-500">Kota</p>
+              <p className="text-[11px] text-gray-500 whitespace-nowrap">Kota</p>
             </div>
-            <div className="w-px h-8 bg-gray-100" />
-            <div className="text-center">
+            <div className="w-px h-8 bg-gray-100 flex-shrink-0" />
+            <div className="text-center px-1">
               <p className="text-lg font-bold text-gray-900">4.9</p>
-              <p className="text-xs text-gray-500">Rating</p>
+              <p className="text-[11px] text-gray-500 whitespace-nowrap">Rating</p>
             </div>
-            <div className="w-px h-8 bg-gray-100" />
-            <div className="text-center">
+            <div className="w-px h-8 bg-gray-100 flex-shrink-0" />
+            <div className="text-center px-1">
               <p className="text-lg font-bold text-gray-900">24/7</p>
-              <p className="text-xs text-gray-500">Support</p>
+              <p className="text-[11px] text-gray-500 whitespace-nowrap">Support</p>
             </div>
           </div>
         </div>
@@ -180,20 +180,124 @@ export default function Home() {
         </div>
         <div className="flex gap-3 px-4 overflow-x-auto pb-2 scrollbar-hide">
           {[
-            { kota: "Yogyakarta", emoji: "🏛️", jumlah: kamarList.filter(k => k.kota === "Yogyakarta").length },
-            { kota: "Malang", emoji: "🌿", jumlah: kamarList.filter(k => k.kota === "Malang").length },
-            { kota: "Bandung", emoji: "🌺", jumlah: kamarList.filter(k => k.kota === "Bandung").length },
-            { kota: "Jakarta", emoji: "🏙️", jumlah: kamarList.filter(k => k.kota === "Jakarta").length },
-            { kota: "Bali", emoji: "🌴", jumlah: kamarList.filter(k => k.kota === "Bali").length },
+            {
+              kota: "Yogyakarta",
+              jumlah: kamarList.filter(k => k.kota === "Yogyakarta").length,
+              color: "#f59e0b",
+              bg: "#fffbeb",
+              // Candi Prambanan
+              icon: (
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10">
+                  <rect x="20" y="38" width="8" height="4" rx="1" fill="#f59e0b"/>
+                  <rect x="22" y="32" width="4" height="6" fill="#f59e0b"/>
+                  <polygon points="24,10 20,32 28,32" fill="#f59e0b"/>
+                  <polygon points="24,14 21,28 27,28" fill="#fbbf24"/>
+                  <rect x="18" y="36" width="12" height="2" rx="1" fill="#d97706"/>
+                  <rect x="10" y="40" width="6" height="3" rx="1" fill="#f59e0b"/>
+                  <rect x="11" y="35" width="4" height="5" fill="#f59e0b"/>
+                  <polygon points="13,22 10,35 16,35" fill="#f59e0b"/>
+                  <rect x="32" y="40" width="6" height="3" rx="1" fill="#f59e0b"/>
+                  <rect x="33" y="35" width="4" height="5" fill="#f59e0b"/>
+                  <polygon points="35,22 32,35 38,35" fill="#f59e0b"/>
+                  <rect x="6" y="43" width="36" height="2" rx="1" fill="#d97706"/>
+                </svg>
+              ),
+            },
+            {
+              kota: "Malang",
+              jumlah: kamarList.filter(k => k.kota === "Malang").length,
+              color: "#ef4444",
+              bg: "#fef2f2",
+              // Apel Malang
+              icon: (
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10">
+                  <path d="M24 10 C24 10 26 6 30 7" stroke="#16a34a" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M30 7 C32 5 34 6 33 8" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round"/>
+                  <ellipse cx="24" cy="28" rx="13" ry="15" fill="#ef4444"/>
+                  <ellipse cx="20" cy="26" rx="5" ry="8" fill="#f87171" opacity="0.5"/>
+                  <path d="M24 13 C24 13 24 16 24 18" stroke="#92400e" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M17 16 C19 18 21 19 24 18" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" fill="none"/>
+                </svg>
+              ),
+            },
+            {
+              kota: "Bandung",
+              jumlah: kamarList.filter(k => k.kota === "Bandung").length,
+              color: "#8b5cf6",
+              bg: "#f5f3ff",
+              // Gedung Sate
+              icon: (
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10">
+                  <rect x="8" y="32" width="32" height="10" rx="1" fill="#8b5cf6"/>
+                  <rect x="12" y="22" width="24" height="10" fill="#7c3aed"/>
+                  <rect x="16" y="16" width="16" height="6" fill="#8b5cf6"/>
+                  <rect x="20" y="10" width="8" height="6" fill="#7c3aed"/>
+                  <rect x="22" y="4" width="4" height="6" fill="#8b5cf6"/>
+                  {/* Sate (tusukan) */}
+                  <circle cx="24" cy="3" r="1.5" fill="#f59e0b"/>
+                  <circle cx="24" cy="6.5" r="1.5" fill="#f59e0b"/>
+                  <circle cx="24" cy="10" r="1.5" fill="#f59e0b"/>
+                  <rect x="14" y="22" width="4" height="10" fill="#6d28d9"/>
+                  <rect x="30" y="22" width="4" height="10" fill="#6d28d9"/>
+                  <rect x="10" y="30" width="28" height="2" fill="#6d28d9"/>
+                </svg>
+              ),
+            },
+            {
+              kota: "Jakarta",
+              jumlah: kamarList.filter(k => k.kota === "Jakarta").length,
+              color: "#0ea5e9",
+              bg: "#f0f9ff",
+              // Monas
+              icon: (
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10">
+                  <rect x="10" y="38" width="28" height="5" rx="1" fill="#0ea5e9"/>
+                  <rect x="14" y="34" width="20" height="4" fill="#0284c7"/>
+                  <rect x="18" y="20" width="12" height="14" fill="#0ea5e9"/>
+                  <polygon points="24,4 20,20 28,20" fill="#0ea5e9"/>
+                  <polygon points="24,8 21,18 27,18" fill="#38bdf8"/>
+                  {/* Api emas */}
+                  <ellipse cx="24" cy="4" rx="2.5" ry="3.5" fill="#f59e0b"/>
+                  <ellipse cx="24" cy="4" rx="1.5" ry="2.5" fill="#fbbf24"/>
+                  <rect x="12" y="34" width="24" height="2" fill="#0369a1"/>
+                </svg>
+              ),
+            },
+            {
+              kota: "Bali",
+              jumlah: kamarList.filter(k => k.kota === "Bali").length,
+              color: "#10b981",
+              bg: "#ecfdf5",
+              // Pura Bali
+              icon: (
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10">
+                  <rect x="10" y="40" width="28" height="4" rx="1" fill="#10b981"/>
+                  <rect x="14" y="36" width="20" height="4" fill="#059669"/>
+                  <rect x="18" y="32" width="12" height="4" fill="#10b981"/>
+                  <rect x="20" y="28" width="8" height="4" fill="#059669"/>
+                  <rect x="21" y="22" width="6" height="6" fill="#10b981"/>
+                  <polygon points="24,10 20,22 28,22" fill="#10b981"/>
+                  <polygon points="24,14 21,20 27,20" fill="#34d399"/>
+                  <polygon points="24,8 22,14 26,14" fill="#059669"/>
+                  {/* Payung */}
+                  <path d="M24 8 C24 8 20 5 16 8" stroke="#f59e0b" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  <path d="M24 8 C24 8 28 5 32 8" stroke="#f59e0b" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+                  <line x1="24" y1="5" x2="24" y2="8" stroke="#92400e" strokeWidth="1.5"/>
+                </svg>
+              ),
+            },
           ].map((item) => (
             <Link
               key={item.kota}
               href={`/kamar?lokasi=${item.kota}`}
-              className="flex-shrink-0 flex flex-col items-center gap-2 bg-gray-50 border border-gray-100 rounded-2xl px-4 py-3 min-w-[80px] active:scale-95 transition-transform"
+              className="flex-shrink-0 flex flex-col items-center gap-2 border rounded-2xl px-4 py-3 min-w-[88px] active:scale-95 transition-transform"
+              style={{ backgroundColor: item.bg, borderColor: item.color + "33" }}
             >
-              <span className="text-2xl">{item.emoji}</span>
-              <span className="text-xs font-semibold text-gray-700">{item.kota}</span>
-              <span className="text-xs text-gray-400">{item.jumlah} kost</span>
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: item.color + "15" }}>
+                {item.icon}
+              </div>
+              <span className="text-xs font-bold" style={{ color: item.color }}>{item.kota}</span>
+              <span className="text-[10px] text-gray-400">{item.jumlah} kost</span>
             </Link>
           ))}
         </div>
