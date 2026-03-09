@@ -112,7 +112,7 @@ export default function Home() {
 
         {/* Stats bar */}
         <div className="relative z-10 mx-4 mb-0">
-          <div className="bg-white rounded-2xl shadow-lg px-2 py-4 flex items-center justify-around -mb-5">
+          <div className="bg-white rounded-2xl shadow-lg px-2 py-5 flex items-center justify-around -mb-5">
             <div className="text-center px-1">
               <p className="text-lg font-bold text-gray-900">23</p>
               <p className="text-[11px] text-gray-500 whitespace-nowrap">Properti</p>
@@ -165,7 +165,7 @@ export default function Home() {
       </section>
 
       {/* ===== MOBILE: QUICK FILTER KOTA ===== */}
-      <section className="md:hidden pt-8 pb-4 bg-white">
+      <section className="md:hidden pt-12 pb-6 bg-white">
         <div className="px-4 mb-3">
           <p className="text-xs font-semibold uppercase tracking-widest text-pink-500 mb-1">Cari Berdasarkan Kota</p>
           <h2 className="text-lg font-bold text-gray-900">Pilih Kotamu</h2>
@@ -296,10 +296,10 @@ export default function Home() {
       </section>
 
       {/* ===== KAMAR TERSEDIA ===== */}
-      <section className="py-6 md:py-16 bg-gray-50">
+      <section className="py-8 md:py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="flex items-center justify-between mb-4 px-4 md:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-5 px-4 md:px-6 lg:px-8">
             <div>
               <p className="text-xs md:text-sm font-semibold uppercase tracking-widest mb-0.5 md:mb-1 text-pink-500">
                 Kamar Tersedia
@@ -315,7 +315,7 @@ export default function Home() {
           </div>
 
           {/* Tab Filter - Horizontal Scroll on Mobile */}
-          <div className="flex gap-2 mb-4 px-4 md:px-6 lg:px-8 overflow-x-auto pb-1 scrollbar-hide">
+          <div className="flex gap-2.5 mb-5 px-4 md:px-6 lg:px-8 overflow-x-auto pb-2 scrollbar-hide">
             {TABS.map((tab) => {
               const jumlah = tab === "Semua" ? kamarList.length : kamarList.filter((k) => k.kota === tab).length;
               return (
