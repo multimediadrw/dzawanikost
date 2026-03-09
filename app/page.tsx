@@ -20,6 +20,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import KamarCard from "@/components/KamarCard";
+import SearchBar from "@/components/SearchBar";
 import { kamarList, daftarArtikel } from "@/lib/data";
 
 const TABS = ["Semua", "Yogyakarta", "Malang", "Bandung", "Jakarta", "Bali"];
@@ -158,16 +159,7 @@ export default function Home() {
         </div>
         <div className="relative z-20 pb-10">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Desktop SearchBar placeholder */}
-            <div className="bg-white rounded-2xl shadow-xl p-4 flex gap-3">
-              <div className="flex-1 flex items-center gap-2 bg-gray-50 rounded-xl px-4 py-3">
-                <Search className="w-4 h-4 text-gray-400" />
-                <span className="text-gray-400 text-sm">Cari kost berdasarkan lokasi...</span>
-              </div>
-              <Link href="/kamar" className="px-6 py-3 rounded-xl text-white font-semibold text-sm" style={{ backgroundColor: "#e879a0" }}>
-                Cari Kamar
-              </Link>
-            </div>
+            <SearchBar variant="hero" />
           </div>
         </div>
       </section>
