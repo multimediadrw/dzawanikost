@@ -2,8 +2,13 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronDown, Search } from "lucide-react";
-import { lokasiList } from "@/lib/data";
+import { ChevronDown, Search, MapPin } from "lucide-react";
+
+// Kota yang benar-benar ada di data kost
+const KOTA_OPTIONS = [
+  { value: "Yogyakarta", label: "Yogyakarta", sub: "11 properti", emoji: "🏛️" },
+  { value: "Malang", label: "Malang", sub: "1 properti", emoji: "🌿" },
+];
 
 interface SearchBarProps {
   initialLokasi?: string;
@@ -41,33 +46,25 @@ function Dropdown({ label, value, options, onChange, placeholder }: DropdownProp
   }, []);
 
   const handleOpen = () => {
-    if (!open) {
-      updatePosition();
-    }
+    if (!open) updatePosition();
     setOpen((prev) => !prev);
   };
 
   useEffect(() => {
-    if (open) {
-      updatePosition();
-    }
+    if (open) updatePosition();
   }, [open, updatePosition]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       const target = e.target as Node;
       if (
-        buttonRef.current &&
-        !buttonRef.current.contains(target) &&
-        dropdownRef.current &&
-        !dropdownRef.current.contains(target)
+        buttonRef.current && !buttonRef.current.contains(target) &&
+        dropdownRef.current && !dropdownRef.current.contains(target)
       ) {
         setOpen(false);
       }
     }
-    function handleScroll() {
-      if (open) updatePosition();
-    }
+    function handleScroll() { if (open) updatePosition(); }
     document.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("scroll", handleScroll, true);
     window.addEventListener("resize", updatePosition);
@@ -92,26 +89,15 @@ function Dropdown({ label, value, options, onChange, placeholder }: DropdownProp
         <span className={value ? "text-gray-900" : "text-gray-400"}>
           {value || placeholder}
         </span>
-        <ChevronDown
-          className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 ${
-            open ? "rotate-180" : ""
-          }`}
-        />
+        <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 ${open ? "rotate-180" : ""}`} />
       </button>
 
       {open && (
-        <div
-          ref={dropdownRef}
-          style={dropdownStyle}
-          className="bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden"
-        >
+        <div ref={dropdownRef} style={dropdownStyle} className="bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden">
           <div className="max-h-52 overflow-y-auto">
             <button
               type="button"
-              onClick={() => {
-                onChange("");
-                setOpen(false);
-              }}
+              onClick={() => { onChange(""); setOpen(false); }}
               className="w-full text-left px-4 py-3 text-sm font-semibold text-gray-500 hover:bg-pink-50 transition-colors border-b border-gray-100"
             >
               {placeholder}
@@ -120,20 +106,125 @@ function Dropdown({ label, value, options, onChange, placeholder }: DropdownProp
               <button
                 key={opt}
                 type="button"
-                onClick={() => {
-                  onChange(opt);
-                  setOpen(false);
-                }}
+                onClick={() => { onChange(opt); setOpen(false); }}
                 className={`w-full text-left px-4 py-3 text-sm hover:bg-pink-50 transition-colors ${
-                  value === opt
-                    ? "text-pink-600 font-semibold bg-pink-50"
-                    : "text-gray-700"
+                  value === opt ? "text-pink-600 font-semibold bg-pink-50" : "text-gray-700"
                 }`}
               >
                 {opt}
               </button>
             ))}
           </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Dropdown khusus untuk Lokasi dengan tampilan yang lebih informatif
+function LokasiDropdown({ value, onChange }: { value: string; onChange: (val: string) => void }) {
+  const [open, setOpen] = useState(false);
+  const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const selected = KOTA_OPTIONS.find((k) => k.value === value);
+
+  const updatePosition = useCallback(() => {
+    if (buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setDropdownStyle({
+        position: "fixed",
+        top: rect.bottom + 4,
+        left: rect.left,
+        minWidth: Math.max(rect.width, 240),
+        zIndex: 9999,
+      });
+    }
+  }, []);
+
+  const handleOpen = () => {
+    if (!open) updatePosition();
+    setOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (open) updatePosition();
+  }, [open, updatePosition]);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      const target = e.target as Node;
+      if (
+        buttonRef.current && !buttonRef.current.contains(target) &&
+        dropdownRef.current && !dropdownRef.current.contains(target)
+      ) {
+        setOpen(false);
+      }
+    }
+    function handleScroll() { if (open) updatePosition(); }
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll, true);
+    window.addEventListener("resize", updatePosition);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll, true);
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, [open, updatePosition]);
+
+  return (
+    <div className="relative flex-1 min-w-0">
+      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5 px-1">
+        Lokasi
+      </p>
+      <button
+        ref={buttonRef}
+        type="button"
+        onClick={handleOpen}
+        className="w-full flex items-center justify-between gap-2 px-4 py-3 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 transition-colors"
+      >
+        <div className="flex items-center gap-2 min-w-0">
+          <MapPin className="w-4 h-4 text-pink-400 flex-shrink-0" />
+          <span className={value ? "text-gray-900" : "text-gray-400"}>
+            {selected ? selected.label : "Pilih Kota"}
+          </span>
+        </div>
+        <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 ${open ? "rotate-180" : ""}`} />
+      </button>
+
+      {open && (
+        <div ref={dropdownRef} style={dropdownStyle} className="bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden">
+          {/* Reset */}
+          <button
+            type="button"
+            onClick={() => { onChange(""); setOpen(false); }}
+            className="w-full text-left px-4 py-3 text-sm font-semibold text-gray-500 hover:bg-pink-50 transition-colors border-b border-gray-100 flex items-center gap-2"
+          >
+            <MapPin className="w-4 h-4 text-gray-300" />
+            Semua Kota
+          </button>
+          {KOTA_OPTIONS.map((kota) => (
+            <button
+              key={kota.value}
+              type="button"
+              onClick={() => { onChange(kota.value); setOpen(false); }}
+              className={`w-full text-left px-4 py-3 text-sm hover:bg-pink-50 transition-colors flex items-center gap-3 ${
+                value === kota.value ? "bg-pink-50" : ""
+              }`}
+            >
+              <span className="text-lg">{kota.emoji}</span>
+              <div>
+                <p className={`font-semibold ${value === kota.value ? "text-pink-600" : "text-gray-800"}`}>
+                  {kota.label}
+                </p>
+                <p className="text-xs text-gray-400">{kota.sub}</p>
+              </div>
+              {value === kota.value && (
+                <span className="ml-auto text-pink-500 text-xs font-bold">✓</span>
+              )}
+            </button>
+          ))}
         </div>
       )}
     </div>
@@ -165,19 +256,9 @@ export default function SearchBar({
   };
 
   return (
-    <div
-      className={`bg-white rounded-2xl shadow-xl border border-gray-100 ${
-        variant === "hero" ? "p-6" : "p-5"
-      }`}
-    >
+    <div className={`bg-white rounded-2xl shadow-xl border border-gray-100 ${variant === "hero" ? "p-6" : "p-5"}`}>
       <div className="flex flex-col md:flex-row items-end gap-4">
-        <Dropdown
-          label="Lokasi"
-          value={lokasi}
-          options={lokasiList}
-          onChange={setLokasi}
-          placeholder="Pilih Lokasi"
-        />
+        <LokasiDropdown value={lokasi} onChange={setLokasi} />
 
         <div className="hidden md:block w-px h-12 bg-gray-200 self-end mb-1" />
 

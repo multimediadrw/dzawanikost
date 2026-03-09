@@ -81,7 +81,7 @@ const TESTIMONI = [
   },
 ];
 
-const TABS = ["Semua", "Yogyakarta", "Sleman", "Bantul"];
+const TABS = ["Semua", "Yogyakarta", "Malang"];
 
 const FASILITAS_UMUM = [
   { icon: Wifi, label: "WiFi Gratis", sub: "24 jam" },
@@ -99,7 +99,7 @@ export default function Home() {
   const filteredKamar =
     activeTab === "Semua"
       ? kamarList.slice(0, 6)
-      : kamarList.filter((k) => k.lokasi === activeTab).slice(0, 6);
+      : kamarList.filter((k) => k.kota === activeTab).slice(0, 6);
 
   return (
     <main>
@@ -191,19 +191,33 @@ export default function Home() {
 
           {/* Tab Filter Lokasi */}
           <div className="flex flex-wrap gap-2 mb-8">
-            {TABS.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                  activeTab === tab
-                    ? "bg-pink-500 text-white shadow-sm"
-                    : "bg-white text-gray-500 border border-gray-200 hover:border-pink-300"
-                }`}
+            {TABS.map((tab) => {
+              const jumlah = tab === "Semua" ? kamarList.length : kamarList.filter((k) => k.kota === tab).length;
+              return (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all ${
+                    activeTab === tab
+                      ? "bg-pink-500 text-white shadow-sm shadow-pink-200"
+                      : "bg-white text-gray-600 border border-gray-200 hover:border-pink-300 hover:bg-pink-50"
+                  }`}
+                >
+                  <span>{tab}</span>
+                  <span className={`text-xs px-1.5 py-0.5 rounded-full font-semibold ${
+                    activeTab === tab ? "bg-white/20 text-white" : "bg-gray-100 text-gray-500"
+                  }`}>{jumlah}</span>
+                </button>
+              );
+            })}
+            {activeTab !== "Semua" && (
+              <Link
+                href={`/kamar?lokasi=${activeTab}`}
+                className="ml-auto text-sm font-semibold text-pink-500 hover:text-pink-600 transition-colors flex items-center gap-1"
               >
-                {tab}
-              </button>
-            ))}
+                Lihat semua di {activeTab} →
+              </Link>
+            )}
           </div>
 
           {/* Kamar Cards */}

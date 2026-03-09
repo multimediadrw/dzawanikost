@@ -2626,8 +2626,6 @@ export const daftarArtikel: Artikel[] = [
 export const lokasiList = [
   'Yogyakarta',
   'Malang',
-  'Bandung',
-  'Jakarta',
 ];
 
 export const kategoriArtikel = [
