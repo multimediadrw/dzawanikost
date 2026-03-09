@@ -3,11 +3,15 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronDown, Search, MapPin } from "lucide-react";
+import { kamarList } from "@/lib/data";
 
-// Kota yang benar-benar ada di data kost
+// Kota yang benar-benar ada di data kost — dihitung dinamis
 const KOTA_OPTIONS = [
-  { value: "Yogyakarta", label: "Yogyakarta", sub: "11 properti", emoji: "🏛️" },
-  { value: "Malang", label: "Malang", sub: "1 properti", emoji: "🌿" },
+  { value: "Yogyakarta", label: "Yogyakarta", emoji: "🏛️" },
+  { value: "Malang", label: "Malang", emoji: "🌿" },
+  { value: "Bandung", label: "Bandung", emoji: "🌺" },
+  { value: "Jakarta", label: "Jakarta", emoji: "🏙️" },
+  { value: "Bali", label: "Bali", emoji: "🌴" },
 ];
 
 interface SearchBarProps {
@@ -121,7 +125,7 @@ function Dropdown({ label, value, options, onChange, placeholder }: DropdownProp
   );
 }
 
-// Dropdown khusus untuk Lokasi dengan tampilan yang lebih informatif
+// Dropdown khusus Lokasi dengan tampilan informatif
 function LokasiDropdown({ value, onChange }: { value: string; onChange: (val: string) => void }) {
   const [open, setOpen] = useState(false);
   const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
@@ -137,7 +141,7 @@ function LokasiDropdown({ value, onChange }: { value: string; onChange: (val: st
         position: "fixed",
         top: rect.bottom + 4,
         left: rect.left,
-        minWidth: Math.max(rect.width, 240),
+        minWidth: Math.max(rect.width, 260),
         zIndex: 9999,
       });
     }
@@ -187,7 +191,7 @@ function LokasiDropdown({ value, onChange }: { value: string; onChange: (val: st
         <div className="flex items-center gap-2 min-w-0">
           <MapPin className="w-4 h-4 text-pink-400 flex-shrink-0" />
           <span className={value ? "text-gray-900" : "text-gray-400"}>
-            {selected ? selected.label : "Pilih Kota"}
+            {selected ? `${selected.emoji} ${selected.label}` : "Pilih Kota"}
           </span>
         </div>
         <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform flex-shrink-0 ${open ? "rotate-180" : ""}`} />
@@ -204,27 +208,30 @@ function LokasiDropdown({ value, onChange }: { value: string; onChange: (val: st
             <MapPin className="w-4 h-4 text-gray-300" />
             Semua Kota
           </button>
-          {KOTA_OPTIONS.map((kota) => (
-            <button
-              key={kota.value}
-              type="button"
-              onClick={() => { onChange(kota.value); setOpen(false); }}
-              className={`w-full text-left px-4 py-3 text-sm hover:bg-pink-50 transition-colors flex items-center gap-3 ${
-                value === kota.value ? "bg-pink-50" : ""
-              }`}
-            >
-              <span className="text-lg">{kota.emoji}</span>
-              <div>
-                <p className={`font-semibold ${value === kota.value ? "text-pink-600" : "text-gray-800"}`}>
-                  {kota.label}
-                </p>
-                <p className="text-xs text-gray-400">{kota.sub}</p>
-              </div>
-              {value === kota.value && (
-                <span className="ml-auto text-pink-500 text-xs font-bold">✓</span>
-              )}
-            </button>
-          ))}
+          {KOTA_OPTIONS.map((kota) => {
+            const jumlah = kamarList.filter((k) => k.kota === kota.value).length;
+            return (
+              <button
+                key={kota.value}
+                type="button"
+                onClick={() => { onChange(kota.value); setOpen(false); }}
+                className={`w-full text-left px-4 py-3 text-sm hover:bg-pink-50 transition-colors flex items-center gap-3 ${
+                  value === kota.value ? "bg-pink-50" : ""
+                }`}
+              >
+                <span className="text-xl">{kota.emoji}</span>
+                <div className="flex-1">
+                  <p className={`font-semibold ${value === kota.value ? "text-pink-600" : "text-gray-800"}`}>
+                    {kota.label}
+                  </p>
+                  <p className="text-xs text-gray-400">{jumlah} properti</p>
+                </div>
+                {value === kota.value && (
+                  <span className="text-pink-500 text-xs font-bold">✓</span>
+                )}
+              </button>
+            );
+          })}
         </div>
       )}
     </div>

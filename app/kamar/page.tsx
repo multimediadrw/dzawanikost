@@ -2,16 +2,18 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
-import { MapPin, Search, X, ChevronDown } from "lucide-react";
+import { MapPin, Search, X } from "lucide-react";
 import KamarCard from "@/components/KamarCard";
 import { kamarList } from "@/lib/data";
 
-// Kota yang benar-benar ada di data
+// Semua kota yang ada di data
 const KOTA_LIST = [
-  { label: "Semua Kota", value: "" },
-  { label: "Yogyakarta", value: "Yogyakarta", emoji: "🏛️" },
-  { label: "Malang", value: "Malang", emoji: "🌿" },
+  { label: "Semua", value: "", emoji: "🗺️", desc: "Semua kota" },
+  { label: "Yogyakarta", value: "Yogyakarta", emoji: "🏛️", desc: "DIY" },
+  { label: "Malang", value: "Malang", emoji: "🌿", desc: "Jawa Timur" },
+  { label: "Bandung", value: "Bandung", emoji: "🌺", desc: "Jawa Barat" },
+  { label: "Jakarta", value: "Jakarta", emoji: "🏙️", desc: "DKI Jakarta" },
+  { label: "Bali", value: "Bali", emoji: "🌴", desc: "Villa & Resort" },
 ];
 
 const PENGHUNI_LIST = [
@@ -28,7 +30,6 @@ function KamarPageContent() {
   const [cari, setCari] = useState("");
   const [filtered, setFiltered] = useState(kamarList);
 
-  // Hitung jumlah kost per kota
   const jumlahPerKota = (kotaVal: string) => {
     if (!kotaVal) return kamarList.length;
     return kamarList.filter((k) => k.kota === kotaVal).length;
@@ -57,10 +58,11 @@ function KamarPageContent() {
   };
 
   const hasFilter = kota || penghuni || cari;
+  const kotaInfo = KOTA_LIST.find((k) => k.value === kota);
 
   return (
     <main className="min-h-screen bg-gray-50">
-      {/* ===== HERO HEADER ===== */}
+      {/* ===== HEADER ===== */}
       <div className="bg-white border-b border-gray-100 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -69,16 +71,22 @@ function KamarPageContent() {
                 Jelajahi Kamar
               </p>
               <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
-                Temukan Kost{" "}
                 {kota ? (
-                  <span className="text-pink-500">di {kota}</span>
+                  <>
+                    Kost & Villa di{" "}
+                    <span className="text-pink-500">
+                      {kotaInfo?.emoji} {kota}
+                    </span>
+                  </>
                 ) : (
-                  <span className="text-pink-500">Terbaik</span>
+                  <>
+                    Semua <span className="text-pink-500">Properti Dzawani</span>
+                  </>
                 )}
               </h1>
               <p className="text-gray-500 text-sm mt-1">
                 {filtered.length} properti tersedia
-                {kota ? ` di ${kota}` : " di semua kota"}
+                {kota ? ` di ${kota}` : " di 5 kota"}
               </p>
             </div>
 
@@ -106,8 +114,8 @@ function KamarPageContent() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* ===== FILTER KOTA (TAB BESAR) ===== */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+        {/* ===== FILTER KOTA — CARD GRID ===== */}
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-6">
           {KOTA_LIST.map((k) => {
             const jumlah = jumlahPerKota(k.value);
             const isActive = kota === k.value;
@@ -115,48 +123,29 @@ function KamarPageContent() {
               <button
                 key={k.value}
                 onClick={() => setKota(k.value)}
-                className={`relative flex items-center gap-3 px-5 py-4 rounded-2xl border-2 text-left transition-all ${
+                className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-2xl border-2 text-center transition-all ${
                   isActive
                     ? "border-pink-500 bg-pink-50 shadow-md shadow-pink-100"
                     : "border-gray-200 bg-white hover:border-pink-300 hover:bg-pink-50/50"
                 }`}
               >
-                <div
-                  className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg flex-shrink-0 ${
-                    isActive ? "bg-pink-500" : "bg-gray-100"
+                <span className="text-2xl">{k.emoji}</span>
+                <p className={`font-bold text-xs leading-tight ${isActive ? "text-pink-600" : "text-gray-700"}`}>
+                  {k.label}
+                </p>
+                <span
+                  className={`text-xs px-2 py-0.5 rounded-full font-semibold ${
+                    isActive ? "bg-pink-500 text-white" : "bg-gray-100 text-gray-500"
                   }`}
                 >
-                  {k.value === "" ? (
-                    <MapPin className={`w-5 h-5 ${isActive ? "text-white" : "text-gray-500"}`} />
-                  ) : (
-                    <span>{k.emoji}</span>
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p
-                    className={`font-bold text-sm ${
-                      isActive ? "text-pink-600" : "text-gray-800"
-                    }`}
-                  >
-                    {k.label}
-                  </p>
-                  <p
-                    className={`text-xs mt-0.5 ${
-                      isActive ? "text-pink-400" : "text-gray-400"
-                    }`}
-                  >
-                    {jumlah} properti
-                  </p>
-                </div>
-                {isActive && (
-                  <div className="absolute top-3 right-3 w-2 h-2 rounded-full bg-pink-500" />
-                )}
+                  {jumlah}
+                </span>
               </button>
             );
           })}
         </div>
 
-        {/* ===== FILTER PENGHUNI + RESET ===== */}
+        {/* ===== FILTER PENGHUNI ===== */}
         <div className="flex flex-wrap items-center gap-2 mb-6">
           <span className="text-sm font-semibold text-gray-500 mr-1">Penghuni:</span>
           {PENGHUNI_LIST.map((p) => (
@@ -187,12 +176,11 @@ function KamarPageContent() {
         {/* ===== HASIL ===== */}
         {filtered.length > 0 ? (
           <>
-            {/* Label area jika filter kota aktif */}
             {kota && (
               <div className="flex items-center gap-2 mb-4">
                 <MapPin className="w-4 h-4 text-pink-500" />
                 <span className="text-sm font-semibold text-gray-700">
-                  Menampilkan kost di{" "}
+                  Menampilkan {filtered.length} properti di{" "}
                   <span className="text-pink-500">{kota}</span>
                 </span>
               </div>
@@ -209,16 +197,16 @@ function KamarPageContent() {
               <span className="text-3xl">🏠</span>
             </div>
             <h3 className="text-xl font-bold text-gray-700 mb-2">
-              Kamar Tidak Ditemukan
+              Properti Tidak Ditemukan
             </h3>
             <p className="text-gray-400 text-sm mb-6">
-              Tidak ada kamar yang sesuai dengan filter yang dipilih.
+              Tidak ada properti yang sesuai dengan filter yang dipilih.
             </p>
             <button
               onClick={resetFilter}
               className="px-6 py-2.5 bg-pink-500 text-white rounded-full text-sm font-semibold hover:bg-pink-600 transition-colors"
             >
-              Lihat Semua Kamar
+              Lihat Semua Properti
             </button>
           </div>
         )}

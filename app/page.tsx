@@ -81,7 +81,7 @@ const TESTIMONI = [
   },
 ];
 
-const TABS = ["Semua", "Yogyakarta", "Malang"];
+const TABS = ["Semua", "Yogyakarta", "Malang", "Bandung", "Jakarta", "Bali"];
 
 const FASILITAS_UMUM = [
   { icon: Wifi, label: "WiFi Gratis", sub: "24 jam" },
