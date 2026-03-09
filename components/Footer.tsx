@@ -64,20 +64,20 @@ export default function Footer() {
                 <InstagramIcon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
               </a>
               <a
-                href="https://tiktok.com/@dzawanikost.com"
+                href="https://www.tiktok.com/@dzawanikost"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl flex items-center justify-center bg-gray-800 hover:bg-gray-700 transition-colors group"
-                title="TikTok @dzawanikost.com"
+                title="TikTok @dzawanikost"
               >
                 <TikTokIcon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
               </a>
               <a
-                href="https://youtube.com/@DzawaniKostGuestHouse"
+                href="https://www.youtube.com/@dzawanikost"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-xl flex items-center justify-center bg-gray-800 hover:bg-red-600 transition-colors group"
-                title="YouTube Dzawani Kost & Guest House"
+                title="YouTube @dzawanikost"
               >
                 <YouTubeIcon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
               </a>
@@ -115,7 +115,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://tiktok.com/@dzawanikost.com"
+                  href="https://www.tiktok.com/@dzawanikost"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-sm text-gray-400 hover:text-white transition-colors group"
@@ -125,13 +125,13 @@ export default function Footer() {
                   </span>
                   <div>
                     <p className="font-medium text-gray-300 group-hover:text-white transition-colors">TikTok</p>
-                    <p className="text-xs text-gray-500">@dzawanikost.com</p>
+                    <p className="text-xs text-gray-500">@dzawanikost</p>
                   </div>
                 </a>
               </li>
               <li>
                 <a
-                  href="https://youtube.com/@DzawaniKostGuestHouse"
+                  href="https://www.youtube.com/@dzawanikost"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-sm text-gray-400 hover:text-red-400 transition-colors group"
