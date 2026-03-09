@@ -308,7 +308,7 @@ export default function KamarDetailPage({ params }: Props) {
               {/* CTA Buttons */}
               <div className="space-y-3">
                 <a
-                  href={`https://wa.me/6281234567890?text=Halo, saya tertarik dengan ${kamar.nama} (${periode || "1 Bulan"}) di DzawaniKost. Apakah masih tersedia?`}
+                  href={`https://wa.me/628112833993?text=Halo, saya tertarik dengan ${kamar.nama} (${periode || "1 Bulan"}) di DzawaniKost. Apakah masih tersedia?`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-3 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-xl transition-colors shadow-md shadow-pink-100"

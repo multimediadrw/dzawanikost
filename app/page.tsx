@@ -414,7 +414,7 @@ export default function Home() {
                 Tim Customer Service kami siap membantu 24/7. Hubungi Kami melalui WhatsApp untuk respon cepat.
               </p>
               <a
-                href="https://wa.me/6281234567890?text=Halo, saya ingin bertanya tentang DzawaniKost"
+                href="https://wa.me/628112833993?text=Halo, saya ingin bertanya tentang DzawaniKost"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-white text-pink-500 hover:bg-gray-50 transition-colors"

@@ -93,7 +93,7 @@ export default async function DetailArtikelPage({ params }: { params: Promise<{ 
               <p className="text-gray-500 text-sm">Hubungi kami sekarang dan dapatkan info kamar terbaru.</p>
             </div>
             <a
-              href="https://wa.me/6281234567890?text=Halo%20DzawaniKost%2C%20saya%20ingin%20info%20kamar"
+              href="https://wa.me/628112833993?text=Halo%20DzawaniKost%2C%20saya%20ingin%20info%20kamar"
               target="_blank"
               rel="noopener noreferrer"
               className="flex-shrink-0 bg-pink-500 text-white font-semibold px-6 py-3 rounded-full hover:bg-pink-600 transition flex items-center gap-2"

@@ -31,14 +31,14 @@ export default function KontakPage() {
     {
       icon: <Phone className="w-5 h-5" />,
       label: "Telepon",
-      value: "+62 812-3456-7890",
-      href: "tel:+6281234567890",
+      value: "+62 811-2833-993",
+      href: "tel:+628112833993",
     },
     {
       icon: <MessageCircle className="w-5 h-5" />,
       label: "WhatsApp",
-      value: "+62 812-3456-7890",
-      href: "https://wa.me/6281234567890",
+      value: "+62 811-2833-993",
+      href: "https://wa.me/628112833993",
     },
     {
       icon: <Mail className="w-5 h-5" />,
@@ -132,7 +132,7 @@ export default function KontakPage() {
 
               {/* WhatsApp CTA */}
               <a
-                href="https://wa.me/6281234567890?text=Halo, saya ingin bertanya tentang kamar kost DzawaniKost"
+                href="https://wa.me/628112833993?text=Halo, saya ingin bertanya tentang kamar kost DzawaniKost"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full px-5 py-3.5 rounded-xl text-sm font-semibold text-white transition-all hover:opacity-90 shadow-sm"
