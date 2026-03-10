@@ -3,12 +3,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Home, Search, BookOpen, Info, Phone, Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Home, Search, BookOpen, Info, Phone } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -28,8 +37,16 @@ export default function Navbar() {
   return (
     <>
       {/* ===== DESKTOP NAVBAR (hidden on mobile) ===== */}
-      <nav className="absolute top-0 left-0 right-0 z-50 px-4 sm:px-8 lg:px-12 pt-5 hidden md:block">
-        <div className="bg-white rounded-full shadow-lg px-6 py-3 flex items-center justify-between max-w-7xl mx-auto">
+      <nav className={`fixed top-0 left-0 right-0 z-50 hidden md:block transition-all duration-300 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-md shadow-md py-2 px-4 sm:px-8 lg:px-12"
+          : "bg-transparent py-5 px-4 sm:px-8 lg:px-12"
+      }`}>
+        <div className={`flex items-center justify-between max-w-7xl mx-auto transition-all duration-300 ${
+          scrolled
+            ? "bg-transparent px-0"
+            : "bg-white rounded-full shadow-lg px-6 py-3"
+        }`}>
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <Image
