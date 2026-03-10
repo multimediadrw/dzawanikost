@@ -59,7 +59,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -86,7 +86,7 @@ export const kamarList: Kamar[] = [
       "/images/kost/krawitan/photo_09.jpg",
       "/images/kost/krawitan/photo_10.jpg",
       "/images/kost/krawitan/photo_11.jpg",
-      "/images/kost/krawitan/photo_12.jpg",
+      "/images/kost/krawitan/photo_12.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -112,7 +112,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -138,7 +138,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -158,16 +158,14 @@ export const kamarList: Kamar[] = [
     deskripsi: "Dzawani Rajawali adalah kost premium dengan 40 kamar Deluxe. Tersedia pilihan Single Occupancy maupun Double Occupancy. Fasilitas lengkap dengan keamanan 24 jam.",
     fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "WiFi Gratis", "Parkir Motor & Mobil", "Keamanan 24 Jam", "CCTV", "Laundry", "Mushola", "Ruang Santai"],
     peraturan: ["Dilarang membawa tamu lawan jenis ke dalam kamar.", "Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB.", "Jaga kebersihan bersama."],
-    gambar: "/images/kost/rajawali/photo_01.jpg",
+    gambar: "/images/kost/rajawali/photo_02.jpg",
     gambarList: [
-      "/images/kost/rajawali/photo_01.jpg",
       "/images/kost/rajawali/photo_02.jpg",
-      "/images/kost/rajawali/photo_03.jpg",
-      "/images/kost/rajawali/photo_04.jpg",
       "/images/kost/rajawali/photo_05.jpg",
       "/images/kost/rajawali/photo_06.jpg",
-      "/images/kost/rajawali/photo_07.jpg",
       "/images/kost/rajawali/photo_08.jpg",
+      "/images/kost/rajawali/photo_11.jpg",
+      "/images/kost/rajawali/photo_12.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -196,7 +194,7 @@ export const kamarList: Kamar[] = [
       "/images/kost/sambilegi/photo_05.jpg",
       "/images/kost/sambilegi/photo_06.jpg",
       "/images/kost/sambilegi/photo_07.jpg",
-      "/images/kost/sambilegi/photo_08.jpg",
+      "/images/kost/sambilegi/photo_08.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -222,7 +220,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -249,7 +247,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -276,7 +274,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -303,7 +301,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -326,7 +324,7 @@ export const kamarList: Kamar[] = [
     gambar: "/images/kost/ngabean/photo_02.jpg",
     gambarList: [
       "/images/kost/ngabean/photo_02.jpg",
-      "/images/kost/ngabean/photo_04.jpg",
+      "/images/kost/ngabean/photo_04.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -355,7 +353,7 @@ export const kamarList: Kamar[] = [
       "/images/kost/malang/photo_07.jpg",
       "/images/kost/malang/photo_08.jpg",
       "/images/kost/malang/photo_09.jpg",
-      "/images/kost/malang/photo_10.jpg",
+      "/images/kost/malang/photo_10.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -389,7 +387,7 @@ export const kamarList: Kamar[] = [
       "/images/kost/metro/photo_05.jpg",
       "/images/kost/metro/photo_06.jpg",
       "/images/kost/metro/photo_07.jpg",
-      "/images/kost/metro/photo_08.jpg",
+      "/images/kost/metro/photo_08.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -415,7 +413,7 @@ export const kamarList: Kamar[] = [
       "/images/kost/unjani/photo_02.jpg",
       "/images/kost/unjani/photo_03.jpg",
       "/images/kost/unjani/photo_04.jpg",
-      "/images/kost/unjani/photo_05.jpg",
+      "/images/kost/unjani/photo_05.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -439,7 +437,7 @@ export const kamarList: Kamar[] = [
     gambarList: [
       "/images/kost/unjani2/photo_01.jpg",
       "/images/kost/unjani2/photo_02.jpg",
-      "/images/kost/unjani2/photo_03.jpg",
+      "/images/kost/unjani2/photo_03.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -465,7 +463,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -494,7 +492,7 @@ export const kamarList: Kamar[] = [
       "/images/kost/bintaro/photo_05.jpg",
       "/images/kost/bintaro/photo_06.jpg",
       "/images/kost/bintaro/photo_07.jpg",
-      "/images/kost/bintaro/photo_08.jpg",
+      "/images/kost/bintaro/photo_08.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -523,7 +521,7 @@ export const kamarList: Kamar[] = [
       "/images/kost/jatinangor/photo_05.jpg",
       "/images/kost/jatinangor/photo_06.jpg",
       "/images/kost/jatinangor/photo_07.jpg",
-      "/images/kost/jatinangor/photo_08.jpg",
+      "/images/kost/jatinangor/photo_08.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -555,7 +553,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -582,7 +580,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -609,7 +607,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -636,7 +634,7 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
   },
@@ -663,10 +661,10 @@ export const kamarList: Kamar[] = [
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
       "/images/placeholder-kamar.jpg",
-      "/images/placeholder-kamar.jpg",
+      "/images/placeholder-kamar.jpg"
     ],
     whatsapp: "628112833993",
-  },
+  }
 ];
 
 export const daftarArtikel: Artikel[] = [
@@ -2939,7 +2937,7 @@ export const daftarArtikel: Artikel[] = [
     gambar: "/images/placeholder-kamar.jpg",
     tanggal: "2022-06-20",
     penulis: "Tim Dzawani",
-  },
+  }
 ];
 
 export const lokasiList = [
@@ -2947,7 +2945,7 @@ export const lokasiList = [
   'Malang',
   'Bandung',
   'Jakarta',
-  'Bali',
+  'Bali'
 ];
 
 export const kategoriArtikel = [
@@ -2957,9 +2955,8 @@ export const kategoriArtikel = [
   'Tips Mahasiswa',
   'Keuangan',
   'Kesehatan',
-  'Karir & Bisnis',
+  'Karir & Bisnis'
 ];
-
 
 export const formatHarga = (harga: number): string => {
   return new Intl.NumberFormat("id-ID", {
