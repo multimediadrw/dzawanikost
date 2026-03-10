@@ -28,18 +28,24 @@ export default function KamarCard({ kamar }: KamarCardProps) {
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
-      {/* Image Slider */}
+      {/* Image Slider - All images preloaded, only active one visible */}
       <div className="relative h-52 bg-gray-100 overflow-hidden group">
-        <Image
-          src={kamar.gambarList[currentImg]}
-          alt={kamar.nama}
-          fill
-          className="object-cover transition-opacity duration-300"
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
+        {kamar.gambarList.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt={`${kamar.nama} - foto ${i + 1}`}
+            fill
+            className={`object-cover absolute inset-0 transition-opacity duration-150 ${
+              i === currentImg ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+            sizes="(max-width: 768px) 100vw, 33vw"
+            priority={i === 0}
+          />
+        ))}
 
         {/* Badges */}
-        <div className="absolute top-3 left-3 flex gap-2">
+        <div className="absolute top-3 left-3 flex gap-2 z-20">
           <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
             kamar.penghuni === "Putri"
               ? "bg-pink-500 text-white"
@@ -51,7 +57,7 @@ export default function KamarCard({ kamar }: KamarCardProps) {
           </span>
         </div>
 
-        <div className="absolute top-3 right-3">
+        <div className="absolute top-3 right-3 z-20">
           <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
             kamar.tersedia > 0
               ? "bg-green-100 text-green-700 border border-green-200"
@@ -66,13 +72,13 @@ export default function KamarCard({ kamar }: KamarCardProps) {
           <>
             <button
               onClick={prevImg}
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white/80 hover:bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow"
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white/80 hover:bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow z-20"
             >
               <ChevronLeft className="w-4 h-4 text-gray-700" />
             </button>
             <button
               onClick={nextImg}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white/80 hover:bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white/80 hover:bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow z-20"
             >
               <ChevronRight className="w-4 h-4 text-gray-700" />
             </button>
@@ -81,7 +87,7 @@ export default function KamarCard({ kamar }: KamarCardProps) {
 
         {/* Dots */}
         {kamar.gambarList.length > 1 && (
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-20">
             {kamar.gambarList.map((_, i) => (
               <button
                 key={i}
