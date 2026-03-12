@@ -51,7 +51,7 @@ export const kamarList: Kamar[] = [
     harga6Bulan: 10200000,
     tersedia: 34,
     deskripsi: "Dzawani Condongcatur menawarkan 34 kamar Superior yang nyaman di kawasan strategis Condongcatur, Sleman. Dekat berbagai kampus ternama dan pusat perbelanjaan. Cocok untuk mahasiswa maupun karyawan.",
-    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "WiFi Gratis", "Parkir Motor", "Keamanan 24 Jam", "CCTV", "Laundry", "Mushola"],
+    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "Water Heater", "Shower", "Smart TV", "Full Furnish", "Dapur Bersama", "WiFi Gratis", "Parkir Motor", "CCTV", "Balkon", "Kost Putri"],
     peraturan: ["Dilarang membawa tamu lawan jenis ke dalam kamar.", "Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB.", "Jaga kebersihan bersama."],
     gambar: "/images/kost/condongcatur/photo_01.jpg",
     gambarList: [
@@ -84,7 +84,7 @@ export const kamarList: Kamar[] = [
     harga6Bulan: 3700000,
     tersedia: 11,
     deskripsi: "Dzawani Krawitan hadir dengan pilihan kamar Standard hingga Deluxe AC di kawasan Godean yang tenang. Harga terjangkau dengan fasilitas memadai untuk mahasiswa dan keluarga.",
-    fasilitas: ["WiFi Gratis", "Kamar Mandi Dalam", "Parkir Motor", "Keamanan", "Dapur Bersama", "AC (tipe tertentu)"],
+    fasilitas: ["Kamar Mandi Dalam/Luar", "Kasur Spring Bed", "Full Furnish", "Dapur Bersama", "Parkir Motor & Mobil", "CCTV", "Shower", "WiFi Gratis", "Balkon", "Kost Putri"],
     peraturan: ["Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB.", "Jaga kebersihan bersama."],
     gambar: "/images/kost/krawitan/photo_06.jpg",
     gambarList: [
@@ -111,7 +111,7 @@ export const kamarList: Kamar[] = [
     harga6Bulan: 9900000,
     tersedia: 8,
     deskripsi: "Dzawani Palagan menawarkan kamar Superior hingga Deluxe 2 Person di kawasan Palagan yang asri. Tersedia untuk putra, putri, maupun pasutri. Lingkungan tenang dan nyaman.",
-    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "WiFi Gratis", "Parkir Motor & Mobil", "Keamanan 24 Jam", "CCTV", "Laundry"],
+    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "Water Heater", "Shower", "Smart TV", "Full Furnish", "Dapur Bersama", "WiFi Gratis", "Parkir Motor", "CCTV", "Pelayanan Terbaik", "Kost Putri"],
     peraturan: ["Dilarang membawa tamu lawan jenis ke dalam kamar.", "Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB.", "Jaga kebersihan bersama."],
     gambar: "/images/kost/palagan/photo_01.jpg",
     gambarList: [
@@ -144,7 +144,7 @@ export const kamarList: Kamar[] = [
     harga6Bulan: 12000000,
     tersedia: 8,
     deskripsi: "Dzawani Pogung hadir dengan pilihan kamar Superior, Deluxe, hingga Grand Deluxe. Lokasi strategis dekat UGM dan UNY, cocok untuk mahasiswa dan karyawan.",
-    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "WiFi Gratis", "Parkir Motor & Mobil", "Keamanan 24 Jam", "CCTV", "Laundry", "Dapur Bersama"],
+    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "Water Heater", "Shower", "Smart TV", "Full Furnish", "Dapur Bersama", "WiFi Gratis", "Parkir Motor", "CCTV", "Ruang Tamu", "Kost Putri"],
     peraturan: ["Dilarang membawa tamu lawan jenis ke dalam kamar.", "Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB.", "Jaga kebersihan bersama."],
     gambar: "/images/kost/pogung/photo_01.jpg",
     gambarList: [
@@ -177,7 +177,7 @@ export const kamarList: Kamar[] = [
     harga6Bulan: 12600000,
     tersedia: 40,
     deskripsi: "Dzawani Rajawali adalah kost premium dengan 40 kamar Deluxe. Tersedia pilihan Single Occupancy maupun Double Occupancy. Fasilitas lengkap dengan keamanan 24 jam.",
-    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "WiFi Gratis", "Parkir Motor & Mobil", "Keamanan 24 Jam", "CCTV", "Laundry", "Mushola", "Ruang Santai"],
+    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "Water Heater", "Shower", "Smart TV", "Full Furnish", "Dapur Bersama", "WiFi Gratis", "Parkir Motor & Mobil", "CCTV", "Kolam Renang", "Gym / Fitness Center", "Ruang Santai", "Kost Putri", "Kost Pasutri", "Antar Jemput"],
     peraturan: ["Dilarang membawa tamu lawan jenis ke dalam kamar.", "Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB.", "Jaga kebersihan bersama."],
     gambar: "/images/kost/rajawali/rajawali_kolam_1.jpg",
     gambarList: [
@@ -210,7 +210,7 @@ export const kamarList: Kamar[] = [
     harga6Bulan: 4900000,
     tersedia: 10,
     deskripsi: "Dzawani Sambilegi menawarkan kamar Standard dengan harga terjangkau. Lokasi dekat bandara Adisucipto dan berbagai fasilitas umum di Maguwoharjo.",
-    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "WiFi Gratis", "Parkir Motor", "Keamanan 24 Jam", "CCTV"],
+    fasilitas: ["AC", "Kasur Spring Bed", "Full Furnish", "Dapur Bersama", "WiFi Gratis", "Parkir Motor", "CCTV", "Shower", "Balkon", "Kost Putra"],
     peraturan: ["Dilarang membawa tamu lawan jenis ke dalam kamar.", "Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB."],
     gambar: "/images/kost/sambilegi/photo_01.jpg",
     gambarList: [
@@ -243,7 +243,7 @@ export const kamarList: Kamar[] = [
     harga6Bulan: 11100000,
     tersedia: 30,
     deskripsi: "Dzawani Seturan hadir dengan 30 kamar Superior yang nyaman di kawasan Seturan. Dekat berbagai kampus dan pusat kuliner Yogyakarta.",
-    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "WiFi Gratis", "Parkir Motor", "Keamanan 24 Jam", "CCTV", "Laundry", "Dapur Bersama"],
+    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "Water Heater", "Shower", "Smart TV", "Full Furnish", "Dapur Bersama", "WiFi Gratis", "Parkir Motor", "CCTV", "Ruang Belajar Bersama", "Balkon", "Kost Putri"],
     peraturan: ["Dilarang membawa tamu lawan jenis ke dalam kamar.", "Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB.", "Jaga kebersihan bersama."],
     gambar: "/images/kost/seturan/photo_01.jpg",
     gambarList: [
@@ -357,7 +357,7 @@ export const kamarList: Kamar[] = [
     harga6Bulan: 8200000,
     tersedia: 5,
     deskripsi: "Dzawani Ngabean hadir dengan pilihan kamar Standard hingga Deluxe Double Occupancy di pusat kota Yogyakarta. Dekat Malioboro dan berbagai fasilitas umum.",
-    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "WiFi Gratis", "Parkir Motor", "Keamanan 24 Jam", "CCTV", "Dapur Bersama", "Ruang Santai"],
+    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "Water Heater", "Shower", "Smart TV", "Full Furnish", "Dapur Bersama", "WiFi Gratis", "Parkir Motor", "CCTV", "Kost Putri", "Kost Pasutri"],
     peraturan: ["Dilarang membawa tamu lawan jenis ke dalam kamar.", "Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB.", "Jaga kebersihan bersama."],
     gambar: "/images/kost/ngabean/photo_02.jpg",
     gambarList: [
@@ -380,7 +380,7 @@ export const kamarList: Kamar[] = [
     harga6Bulan: 7400000,
     tersedia: 61,
     deskripsi: "Dzawani Dinoyo Malang adalah kost terbesar dengan 120 kamar pilihan mulai Standard hingga Deluxe Balcony. Lokasi strategis di kawasan Dinoyo, dekat berbagai universitas di Malang.",
-    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "WiFi Gratis", "Parkir Motor & Mobil", "Keamanan 24 Jam", "CCTV", "Laundry", "Dapur Bersama", "Balkon (tipe tertentu)"],
+    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "Water Heater", "Shower", "Smart TV", "Full Furnish", "Dapur Bersama", "WiFi Gratis", "Parkir Motor & Mobil", "CCTV", "Air Minum", "Akses 24 Jam", "Kost Putri"],
     peraturan: ["Dilarang membawa tamu lawan jenis ke dalam kamar.", "Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB.", "Jaga kebersihan bersama."],
     gambar: "/images/kost/malang/photo_01.jpg",
     gambarList: [
@@ -418,7 +418,7 @@ export const kamarList: Kamar[] = [
     harga6Bulan: 7700000,
     tersedia: 5,
     deskripsi: "Dzawani Metro Bandung hadir dengan pilihan kamar Standard, Superior, hingga Deluxe. Lokasi strategis di kawasan Metro Bandung, dekat pusat kota dan berbagai fasilitas umum.",
-    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "WiFi Gratis", "Parkir Motor", "Keamanan 24 Jam", "CCTV", "Laundry"],
+    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "Water Heater", "Shower", "Smart TV", "Full Furnish", "Dapur Bersama", "WiFi Gratis", "Parkir Motor", "CCTV", "Kost Putri"],
     peraturan: ["Dilarang membawa tamu lawan jenis ke dalam kamar.", "Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB."],
     gambar: "/images/kost/metro/photo_01.jpg",
     gambarList: [
@@ -534,7 +534,7 @@ export const kamarList: Kamar[] = [
     harga6Bulan: 7800000,
     tersedia: 4,
     deskripsi: "Dzawani Bintaro hadir dengan 104 kamar pilihan Standard, Superior, hingga Deluxe. Lokasi strategis di Bintaro Jakarta Selatan, dekat pusat bisnis dan transportasi umum.",
-    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "WiFi Gratis", "Parkir Motor & Mobil", "Keamanan 24 Jam", "CCTV", "Laundry"],
+    fasilitas: ["AC", "Kasur Spring Bed", "Kamar Mandi Dalam", "Water Heater", "Shower", "Smart TV", "Full Furnish", "Dapur Bersama", "WiFi Gratis", "Parkir Motor & Mobil", "CCTV", "Kost Putri"],
     peraturan: ["Dilarang membawa tamu lawan jenis ke dalam kamar.", "Dilarang merokok di dalam kamar.", "Pembayaran wajib tepat waktu.", "Jam bertamu maksimal pukul 22.00 WIB.", "Jaga kebersihan bersama."],
     gambar: "/images/kost/bintaro/photo_01.jpg",
     gambarList: [
